@@ -2,6 +2,7 @@
 const path = require('path');
 const express = require('express');
 const app = express();
+const logEvents = require('./middleware/logEvents');
 
 const PORT = process.env.PORT || 3000;
 
@@ -28,6 +29,15 @@ app.get('/*',(req,res) =>{
 //    res.sendFile('./views/index.html',{root : __dirname})
    res.status(404).sendFile(path.join(__dirname,'views','404.html'));
    console.log(req.url);
+});
+
+
+app.use((request,response,next) =>{
+
+    logEvents(`${request.method} \t ${request.header.origin} \t${request.url}`,'reqlog.txt');
+    console.log(`${request.method} and ${request.path}`);
+    next();
+
 });
 
 
