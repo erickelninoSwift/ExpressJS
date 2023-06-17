@@ -5,6 +5,10 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
+app.use(express.urlencoded({extended : false}));
+app.use(express.json());
+app.use(express.static(path.join(__dirname,'/public')));
+
 
 app.get('/',(req,res) =>{
 //    res.sendFile('./views/index.html',{root : __dirname});
@@ -23,6 +27,28 @@ app.get('/old-page(.html)?',(req,res) =>{
 app.get('/*',(req,res) =>{
 //    res.sendFile('./views/index.html',{root : __dirname})
    res.status(404).sendFile(path.join(__dirname,'views','404.html'));
+   console.log(req.url);
 });
+
+
+
+// const one = (req,res,next) =>{
+//     console.log('hello!!!')
+//     res.send('i am doing pretty well');
+//     next();
+// }
+// const two = (req,res,next) =>{
+//     console.log('hello!!!')
+    
+//     next();
+// }
+// const three = (req,res) =>{
+//     console.log('jackpot here');
+    
+// }
+
+
+// app.get('/hello(.html)?',[one,two,three]);
+
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
