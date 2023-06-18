@@ -4,30 +4,31 @@ const express = require('express');
 const app = express();
 const {logger} = require('./middleware/logEvents');
 const cors = require('cors')
+const {ErrorHandlingEvent} = require('./middleware/ErrorHandler');
 
 //  Require things ================
 const PORT = process.env.PORT || 3000;
 
 app.use(express.urlencoded({extended : false}));
 app.use(express.json());
-app.use(express.static(path.join(__dirname,'/public')));
+app.use(express.static(path.join(__dirname,'public')));
 
 // ==========================================
 
 
 app.use(logger);
 
-const whiteList = ['http://localhost:3007','https://www.goog.com'];
+const whiteList = ['http://localhost:3000/','https://www.google.com'];
 
 const corseOption = {
-   origin : (origin,callback) =>{
-      if(whiteList.indexOf(origin) !== -1) 
+   origin : (origin, callback) =>{
+      if(whiteList.indexOf(origin) !== -1 || origin) 
       {
          callback(true);
 
       }else
       {
-         callback(new Error('not allowed by corse'))
+         callback(new Error('not allowed by corse'));
       }
 
    },
@@ -55,10 +56,7 @@ app.get('/*',(req,res) =>{
    console.log(req.url);
 });
 
-
-
-
-
+app.use(ErrorHandlingEvent)
 
 // const one = (req,res,next) =>{
 //     console.log('hello!!!')

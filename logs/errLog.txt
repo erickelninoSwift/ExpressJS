@@ -1,0 +1,3 @@
+20230618	20:29:37	7f011efb-b9b2-4778-8887-cfb2c2d6afed	undefined : undefined
+20230618	20:33:54	84494fff-76e7-47d4-9403-061e95119a01	undefined : undefined
+20230618	20:34:25	d4754c23-f2c5-496d-8098-9b1a1254acd5	Error : not allowed by corse

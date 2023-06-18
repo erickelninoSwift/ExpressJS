@@ -28,4 +28,4 @@ const logger = (request,response,next) =>{
 
 }
 
-module.exports = {logger};
+module.exports = {logger,logEvents};
