@@ -5,15 +5,35 @@ const app = express();
 const {logger} = require('./middleware/logEvents');
 const cors = require('cors')
 
-
+//  Require things ================
 const PORT = process.env.PORT || 3000;
 
 app.use(express.urlencoded({extended : false}));
 app.use(express.json());
 app.use(express.static(path.join(__dirname,'/public')));
 
+// ==========================================
+
 
 app.use(logger);
+
+const whiteList = ['http://localhost:3007','https://www.goog.com'];
+
+const corseOption = {
+   origin : (origin,callback) =>{
+      if(whiteList.indexOf(origin) !== -1) 
+      {
+         callback(true);
+
+      }else
+      {
+         callback(new Error('not allowed by corse'))
+      }
+
+   },
+   corseOptionStatus  : 200
+}
+app.use(cors(corseOption));
 
 app.get('/',(req,res) =>{
 //    res.sendFile('./views/index.html',{root : __dirname});
