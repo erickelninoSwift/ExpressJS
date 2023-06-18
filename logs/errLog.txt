@@ -1,3 +1,10 @@
 20230618	20:29:37	7f011efb-b9b2-4778-8887-cfb2c2d6afed	undefined : undefined
 20230618	20:33:54	84494fff-76e7-47d4-9403-061e95119a01	undefined : undefined
 20230618	20:34:25	d4754c23-f2c5-496d-8098-9b1a1254acd5	Error : not allowed by corse
+20230618	20:52:21	809ff571-c311-4381-8f1d-e724c9edeeda	undefined : undefined
+20230618	20:52:28	1f851692-0c7b-42e6-9e92-7e1764706bb9	undefined : undefined
+20230618	20:53:08	0c5a577b-ae4e-4673-9fcc-0464cd93d8a0	undefined : undefined
+20230618	20:53:14	aea74592-cb14-4845-bbfc-ef02ce2fde28	Error : not allowed by corse
+20230618	20:53:22	9fb36813-641f-435c-aea2-77bd52de7bb1	undefined : undefined
+20230618	20:53:23	d6b28f8d-e44e-4c6a-92c0-754d8dadfcb9	undefined : undefined
+20230618	20:53:42	373a4ad0-594d-4f37-9c0e-0f5d882e8bc8	undefined : undefined

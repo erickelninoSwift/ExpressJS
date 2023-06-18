@@ -13,6 +13,9 @@ app.use(express.urlencoded({extended : false}));
 app.use(express.json());
 app.use(express.static(path.join(__dirname,'public')));
 
+app.use('/subdir', require('./routes/subdir'));
+app.use('/subdir',express.static(path.join(__dirname,'public')));
+
 // ==========================================
 
 
@@ -22,7 +25,7 @@ const whiteList = ['http://localhost:3000/','https://www.google.com'];
 
 const corseOption = {
    origin : (origin, callback) =>{
-      if(whiteList.indexOf(origin) !== -1 || origin) 
+      if(whiteList.indexOf(origin)) 
       {
          callback(true);
 
@@ -34,7 +37,7 @@ const corseOption = {
    },
    corseOptionStatus  : 200
 }
-app.use(cors(corseOption));
+app.use(cors());
 
 app.get('/',(req,res) =>{
 //    res.sendFile('./views/index.html',{root : __dirname});
@@ -50,8 +53,9 @@ app.get('/old-page(.html)?',(req,res) =>{
  console.log(res.statusCode);
    res.redirect(301,'new-page.html')
 });
-app.get('/*',(req,res) =>{
+app.all('*',(req,res) =>{
 //    res.sendFile('./views/index.html',{root : __dirname})
+console.log(res.status);
    res.status(404).sendFile(path.join(__dirname,'views','404.html'));
    console.log(req.url);
 });
