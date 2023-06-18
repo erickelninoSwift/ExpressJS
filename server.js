@@ -2,7 +2,9 @@
 const path = require('path');
 const express = require('express');
 const app = express();
-const logEvents = require('./middleware/logEvents');
+const {logger} = require('./middleware/logEvents');
+const cors = require('cors')
+
 
 const PORT = process.env.PORT || 3000;
 
@@ -10,6 +12,8 @@ app.use(express.urlencoded({extended : false}));
 app.use(express.json());
 app.use(express.static(path.join(__dirname,'/public')));
 
+
+app.use(logger);
 
 app.get('/',(req,res) =>{
 //    res.sendFile('./views/index.html',{root : __dirname});
@@ -32,13 +36,7 @@ app.get('/*',(req,res) =>{
 });
 
 
-app.use((request,response,next) =>{
 
-    logEvents(`${request.method} \t ${request.header.origin} \t${request.url}`,'reqlog.txt');
-    console.log(`${request.method} and ${request.path}`);
-    next();
-
-});
 
 
 
